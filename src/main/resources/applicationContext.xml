@@ -17,7 +17,7 @@
           class="com.samborskiy.spring.RapMusic"/>
 
     <bean id="musicPlayer"
-          class="com.samborskiy.spring.MusicPlayer">
+          class="com.samborskiy.spring.MusicPlayer" scope="prototype">
         <property name="musicList">
             <list>
                 <ref bean="classicalMusic"/>
