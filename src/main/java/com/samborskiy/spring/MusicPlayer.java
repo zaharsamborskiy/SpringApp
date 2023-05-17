@@ -1,46 +1,31 @@
 package com.samborskiy.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+@Component
 public class MusicPlayer {
-    private Music music;
-    private String name;
-    private int volume;
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
 
-    //IoC
-    public MusicPlayer(Music music) {
-        this.music = music;
+    public MusicPlayer(ClassicalMusic music1,
+                       RockMusic music2) {
+        this.classicalMusic = music1;
+        this.rockMusic = music2;
     }
 
-    public MusicPlayer() {
-    }
-
-    public void setMusicList(Music musicList) {
-        this.music = musicList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public void setMusic(Music music) {
-        this.music = music;
-    }
-
-    public void playMusic() {
-            System.out.println("Playing: " + music.getSong());
+    public void playMusic(MusicGenre musicGenre) {
+        Random random = new Random();
+        int randomNum = random.nextInt(3);
+        if (musicGenre == MusicGenre.ClASSIC) {
+            System.out.println(classicalMusic.getSong().get(randomNum));
+        } else {
+            System.out.println(rockMusic.getSong().get(randomNum));
+        }
     }
 }
